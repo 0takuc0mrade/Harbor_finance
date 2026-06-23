@@ -1,0 +1,26 @@
+{
+  "network": "testnet",
+  "status": "deployed",
+  "deployer": "ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV",
+  "contracts": {
+    "mock-sbtc": {
+      "address": "ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV",
+      "contractName": "mock-sbtc",
+      "contractId": "ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV.mock-sbtc",
+      "explorerUrl": "https://explorer.hiro.so/txid/0x62905ce5da5c59e71f8ebec4e91ea07331449d6c0b5a0c7830926889828da1e6?chain=testnet"
+    },
+    "receivable-registry": {
+      "address": "ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV",
+      "contractName": "receivable-registry",
+      "contractId": "ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV.receivable-registry",
+      "explorerUrl": "https://explorer.hiro.so/txid/0x90ea30b37b74fb2f7e2359c91f114266c3d4acc89544cb1a72ca5bb3d7b166aa?chain=testnet"
+    },
+    "liquidity-pool": {
+      "address": "ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV",
+      "contractName": "liquidity-pool",
+      "contractId": "ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV.liquidity-pool",
+      "explorerUrl": "https://explorer.hiro.so/txid/0xc05a1d743b6677387cf1cc85b81276b6d9ba532d61d66c668f21a215d2daba00?chain=testnet"
+    }
+  },
+  "lastUpdated": "2026-06-22T23:20:00Z"
+}

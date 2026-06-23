@@ -1,0 +1,4 @@
+[network]
+name = "devnet"
+
+# Keep devnet account seed phrases local. Do not commit mnemonics here.

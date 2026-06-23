@@ -1,0 +1,32 @@
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: https://api.testnet.hiro.so
+bitcoin-node: http://bitcoind.testnet.stacks.co:18332
+plan:
+  batches:
+  - id: 0
+    transactions:
+    - transaction-type: contract-publish
+      contract-name: mock-sbtc
+      expected-sender: ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV
+      cost: 11530
+      path: contracts/mock-sbtc.clar
+      anchor-block-only: true
+      clarity-version: 3
+    - transaction-type: contract-publish
+      contract-name: receivable-registry
+      expected-sender: ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV
+      cost: 47690
+      path: contracts/receivable-registry.clar
+      anchor-block-only: true
+      clarity-version: 3
+    - transaction-type: contract-publish
+      contract-name: liquidity-pool
+      expected-sender: ST1MMSQCF1MPF5R6CWCCBC8Z9R6DH2PZ8QCCCDHZV
+      cost: 48600
+      path: contracts/liquidity-pool.clar
+      anchor-block-only: true
+      clarity-version: 3
+
+    epoch: '3.2'

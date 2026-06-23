@@ -4,16 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:webpack": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "contracts:check": "if command -v clarinet >/dev/null 2>&1; then clarinet check; elif [ -x /tmp/clarinet-bin/clarinet ]; then /tmp/clarinet-bin/clarinet check; else echo \"Clarinet CLI not found. Install Clarinet or download the release binary before running this script.\"; exit 1; fi",
+    "contracts:test": "vitest run tests",
+    "contracts:deploy:testnet:plan": "node scripts/testnet-deploy.mjs plan",
+    "contracts:deploy:testnet:check": "node scripts/testnet-deploy.mjs check",
+    "contracts:deploy:testnet": "node scripts/testnet-deploy.mjs apply"
   },
   "dependencies": {
+    "@stacks/connect": "^8.2.6",
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@stacks/clarinet-sdk": "latest",
+    "@stacks/transactions": "latest",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -21,6 +30,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "latest"
   }
 }

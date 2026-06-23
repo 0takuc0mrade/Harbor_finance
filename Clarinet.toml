@@ -1,0 +1,21 @@
+[project]
+name = "harbor-finance"
+description = "Harbor Finance MVP contracts for receivable lifecycle and mock sBTC liquidity."
+authors = []
+telemetry = false
+cache_dir = ".clarinet"
+
+[contracts.mock-sbtc]
+path = "contracts/mock-sbtc.clar"
+clarity_version = 3
+epoch = "3.2"
+
+[contracts.receivable-registry]
+path = "contracts/receivable-registry.clar"
+clarity_version = 3
+epoch = "3.2"
+
+[contracts.liquidity-pool]
+path = "contracts/liquidity-pool.clar"
+clarity_version = 3
+epoch = "3.2"

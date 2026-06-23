@@ -1,0 +1,14 @@
+# Harbor Finance Stacks testnet settings.
+#
+# This file intentionally contains no funded wallet secret.
+# Before running `npm run contracts:deploy:testnet:plan` or applying a deployment,
+# configure a local deployer account according to the Clarinet version you use.
+# Do not commit private keys, seed phrases, or funded wallet mnemonics.
+
+[network]
+name = "testnet"
+
+# Example local-only shape, left commented to avoid committing secrets:
+#
+# [accounts.deployer]
+# mnemonic = "replace with a local testnet deployer mnemonic; do not commit"
