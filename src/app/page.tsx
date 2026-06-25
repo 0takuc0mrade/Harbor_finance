@@ -1,162 +1,322 @@
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'motion/react';
+import {
+  ArrowUpRight,
+  BadgeCheck,
+  Bitcoin,
+  BookOpenText,
+  ChevronRight,
+  CircleDollarSign,
+  FileCheck2,
+  Layers3,
+  ShieldCheck,
+  Sparkles,
+  Waves,
+} from 'lucide-react';
+
+const VIDEO_URL =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260428_193507_4286c423-2fd9-4efd-92bd-91a939453fc1.mp4';
 
 const FLOW_STEPS = [
   {
     number: '01',
-    title: 'Submit Receivable',
-    description: 'A business submits a verified unpaid invoice with supporting documentation — invoice amount, debtor details, due date, and work completion proof.',
-    icon: '📄',
+    title: 'Submit',
+    description: 'A business enters invoice terms and off-chain evidence references.',
+    icon: FileCheck2,
   },
   {
     number: '02',
-    title: 'Verification & Approval',
-    description: 'An admin reviews the receivable against a structured checklist — business identity, debtor credit, invoice authenticity, and duplicate checks.',
-    icon: '🔍',
+    title: 'Verify',
+    description: 'Admin review checks business, debtor, invoice, and duplicate risk.',
+    icon: ShieldCheck,
   },
   {
     number: '03',
-    title: 'Funding',
-    description: 'Approved receivables move through a mock sBTC liquidity pool. The demo records an advance amount and pool accounting changes.',
-    icon: '💰',
+    title: 'Fund',
+    description: 'Approved receivables move through mock sBTC pool accounting.',
+    icon: CircleDollarSign,
   },
   {
     number: '04',
-    title: 'Repayment',
-    description: 'When repayment evidence is confirmed, the demo records returned principal plus fee/yield amounts against the pool.',
-    icon: '🔄',
+    title: 'Repay',
+    description: 'Repayment evidence updates principal and illustrative yield fields.',
+    icon: BadgeCheck,
   },
   {
     number: '05',
-    title: 'Settlement',
-    description: 'The cycle closes transparently with lifecycle and accounting records that reviewers can inspect end to end.',
-    icon: '🏁',
+    title: 'Settle',
+    description: 'Lifecycle state closes with a transparent Stacks-facing record.',
+    icon: Layers3,
   },
 ];
 
 const WHY_HARBOR = [
   {
-    title: 'Transparent Settlement',
-    description: 'Every funding event, repayment, and settlement is logged on the Stacks blockchain. No opaque intermediaries.',
-    icon: (
-      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
+    title: 'Verified Receivables',
+    description:
+      'Harbor keeps private invoice documents off-chain while showing how lifecycle metadata can be coordinated transparently.',
+    icon: FileCheck2,
   },
   {
-    title: 'Bitcoin-Native Capital',
-    description: 'The intended funding asset is sBTC, a Bitcoin-pegged asset on Stacks. This MVP uses mock sBTC for controlled testing.',
-    icon: (
-      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
+    title: 'Bitcoin-Native Liquidity',
+    description:
+      'Harbor models future sBTC receivables liquidity using a mock sBTC pool deployed on Stacks testnet.',
+    icon: Bitcoin,
   },
   {
-    title: 'Structured Verification',
-    description: 'No black-box underwriting. Every receivable passes a clear verification checklist before funding — visible to all parties.',
-    icon: (
-      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-      </svg>
-    ),
+    title: 'Manual Review First',
+    description:
+      'The demo favors explicit verification checkpoints over unsupported automated underwriting or instant credit claims.',
+    icon: ShieldCheck,
   },
   {
-    title: 'Pool Accounting Model',
-    description: 'The demo shows how deposits, deployed liquidity, repayments, and fee/yield accounting could be tracked for verified receivables.',
-    icon: (
-      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
+    title: 'Auditable Settlement',
+    description:
+      'Funding, repayment, and settlement states are visible in a single lifecycle path with deployed contract IDs linked from `/demo`.',
+    icon: BookOpenText,
   },
 ];
 
-const WHY_STACKS = [
-  {
-    title: 'Bitcoin Finality',
-    description: 'Stacks anchors transaction history to Bitcoin, giving Harbor a Bitcoin-native settlement foundation.',
-  },
-  {
-    title: 'sBTC Integration',
-    description: 'sBTC is the intended Bitcoin-pegged funding asset for future programmable liquidity flows.',
-  },
-  {
-    title: 'Clarity Smart Contracts',
-    description: 'Clarity is a decidable, non-Turing-complete language that makes contract behavior predictable and auditable.',
-  },
-  {
-    title: 'Post-Nakamoto Performance',
-    description: 'Fast block times (~5s) and reliable finality make Stacks practical for real-world financial applications.',
-  },
+const DOCS = [
+  ['Project Answers', 'docs/FINAL_GRANT_ANSWERS.md'],
+  ['Technical Guide', 'docs/REVIEWER_GUIDE.md'],
+  ['Demo Guide', 'docs/DEMO_GUIDE.md'],
+  ['Vercel Deployment', 'docs/VERCEL_DEPLOYMENT.md'],
 ];
+
+function HeroBadge() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="mx-auto mb-4 flex w-fit items-center gap-2 rounded-full border border-white/25 bg-white/60 px-4 py-2 text-[rgba(30,50,90,0.9)] shadow-sm backdrop-blur-md"
+    >
+      <Sparkles className="h-4 w-4 text-[rgba(30,50,90,0.8)]" />
+      <span className="text-sm font-normal">Stacks testnet deployment</span>
+    </motion.div>
+  );
+}
+
+function BottomLeftCard() {
+  return (
+    <motion.div
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      className="absolute bottom-28 right-4 left-auto flex w-fit min-w-[170px] flex-col gap-3 rounded-[1.5rem] bg-white/35 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.16)] ring-1 ring-white/30 backdrop-blur-xl md:bottom-6 md:left-6 md:right-auto lg:bottom-10 lg:left-10 lg:min-w-[210px] lg:rounded-[2.2rem] lg:p-5"
+    >
+      <div>
+        <p className="text-3xl font-normal tracking-tight text-[rgba(30,50,90,0.92)]">3</p>
+        <p className="text-[11px] font-normal uppercase tracking-wider text-[rgba(30,50,90,0.62)]">
+          Testnet contracts
+        </p>
+      </div>
+      <Link href="/demo" className="group flex items-center gap-2 self-start rounded-full bg-white py-1.5 pr-5 pl-1.5 text-sm font-normal text-[rgba(30,50,90,0.9)] shadow-sm transition-colors hover:bg-white/90">
+        <span className="flex rounded-full bg-[rgba(30,50,90,0.1)] p-1 text-[rgba(30,50,90,0.9)]">
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </span>
+        View demo
+      </Link>
+    </motion.div>
+  );
+}
+
+function BottomRightCorner() {
+  return (
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="absolute right-0 bottom-0 flex items-center gap-3 rounded-tl-[1.5rem] bg-[#f0f0f0] p-3 pt-5 pl-8 text-[#f0f0f0] sm:gap-4 sm:rounded-tl-[2rem] sm:p-4 sm:pt-6 sm:pl-10 md:gap-6 md:rounded-tl-[3.5rem] md:p-6 md:pt-8 md:pl-14"
+    >
+      <div className="pointer-events-none absolute -top-[1.5rem] right-0 h-[1.5rem] w-[1.5rem] sm:-top-[2rem] sm:h-[2rem] sm:w-[2rem] md:-top-[3.5rem] md:h-[3.5rem] md:w-[3.5rem]">
+        <svg width="100%" height="100%" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M56 56V0C56 30.9279 30.9279 56 0 56H56Z" fill="currentColor" />
+        </svg>
+      </div>
+      <div className="pointer-events-none absolute bottom-0 -left-[1.5rem] h-[1.5rem] w-[1.5rem] sm:-left-[2rem] sm:h-[2rem] sm:w-[2rem] md:-left-[3.5rem] md:h-[3.5rem] md:w-[3.5rem]">
+        <svg width="100%" height="100%" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M56 56H0C30.9279 56 56 30.9279 56 0V56Z" fill="currentColor" />
+        </svg>
+      </div>
+      <Link href="#documentation" className="flex items-center gap-3 rounded-full transition-opacity hover:opacity-80 sm:gap-4 md:gap-6">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(30,50,90,0.1)] bg-[rgba(30,50,90,0.05)] text-[rgba(30,50,90,0.8)] md:h-14 md:w-14">
+          <ArrowUpRight className="h-5 w-5" />
+        </span>
+        <span className="min-w-0">
+          <span className="block text-base font-normal text-[rgba(30,50,90,0.95)] md:text-xl">Documentation</span>
+          <span className="mt-0.5 flex items-center gap-1 text-[rgba(30,50,90,0.62)]">
+            <span className="text-xs font-normal md:text-[15px]">Technical library</span>
+            <ChevronRight className="h-4 w-4" />
+          </span>
+        </span>
+      </Link>
+    </motion.div>
+  );
+}
+
+function Hero() {
+  return (
+    <div className="flex min-h-screen w-full items-center justify-center bg-[#f0f0f0] p-3 pt-20 md:p-5 md:pt-20">
+      <section className="group relative flex h-[calc(100vh-6rem)] min-h-[680px] w-full max-w-[1536px] flex-col items-center overflow-hidden rounded-[1.5rem] bg-white/10 shadow-none md:rounded-[3rem]">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[65%] lg:object-center"
+        >
+          <source src={VIDEO_URL} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(240,240,240,0.28),rgba(240,240,240,0.1)_42%,rgba(240,240,240,0.48))]" />
+        <div className="absolute inset-x-0 top-0 z-[2] h-40 bg-gradient-to-b from-[#f0f0f0]/70 to-transparent" />
+        <div className="relative z-10 flex h-full w-full flex-col items-center">
+          <div className="flex w-full flex-col items-center px-6 pt-10 text-center md:pt-12">
+            <HeroBadge />
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="max-w-5xl text-4xl font-normal leading-[1.03] tracking-normal text-[#35425a] sm:text-5xl md:text-6xl lg:text-[82px]"
+            >
+              Bitcoin receivables, made transparent.
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-5 max-w-2xl text-sm font-normal leading-relaxed text-[#4d586b]/85 sm:text-base md:text-lg"
+            >
+              Harbor is a controlled Stacks prototype for verified unpaid invoices, mock sBTC pool accounting,
+              and a clear lifecycle path from submission to settlement.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            >
+              <Link href="/demo" className="group flex items-center gap-3 rounded-full bg-[rgba(30,50,90,0.86)] py-2 pr-6 pl-2 text-sm font-normal text-white shadow-[0_16px_40px_rgba(30,50,90,0.18)] transition-colors hover:bg-[rgba(30,50,90,1)]">
+                <span className="flex rounded-full bg-white/20 p-1.5">
+                  <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </span>
+                Launch Demo
+              </Link>
+              <Link href="/dashboard" className="rounded-full border border-white/40 bg-white/45 px-6 py-3 text-sm font-normal text-[rgba(30,50,90,0.9)] backdrop-blur-md transition-colors hover:bg-white/70">
+                Business Dashboard
+              </Link>
+            </motion.div>
+          </div>
+          <BottomLeftCard />
+          <BottomRightCorner />
+        </div>
+      </section>
+    </div>
+  );
+}
 
 export default function LandingPage() {
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-grid" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-orange-500/[0.07] to-transparent rounded-full blur-3xl" />
-        <div className="absolute top-20 right-10 w-[300px] h-[300px] bg-gradient-to-br from-amber-500/[0.04] to-transparent rounded-full blur-3xl animate-float" />
+    <div className="harbor-landing -mt-16 bg-[#f0f0f0] text-[#1f2937]">
+      <Hero />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-20">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/5 px-4 py-1.5 mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
-              </span>
-              <span className="text-xs font-medium text-orange-400">MVP Demo — Built on Stacks with sBTC</span>
+      <section className="bg-[#f0f0f0] px-4 py-16 sm:px-6 lg:px-8" id="how-it-works">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6e7c92]">Lifecycle</p>
+              <h2 className="mt-3 text-3xl font-normal tracking-normal text-[#243149] md:text-5xl">
+                One receivable, five visible states.
+              </h2>
             </div>
-
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
-              <span className="text-white">Bitcoin-powered working capital</span>
-              <br />
-              <span className="gradient-text">for verified receivables.</span>
-            </h1>
-
-            {/* Subheadline */}
-            <p className="mt-6 text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-              Harbor connects businesses holding unpaid invoices with sBTC liquidity providers.
-              Submit a receivable, review verification, and trace mock funding, repayment, and settlement logic on Stacks.
+            <p className="max-w-xl text-sm leading-relaxed text-[#5f6b7d]">
+              The primary demo is deterministic local UI state. It mirrors the deployed Clarity lifecycle so users can inspect the model before optional wallet signing.
             </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {FLOW_STEPS.map((step) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.number} className="rounded-[1.5rem] border border-white/70 bg-white/50 p-5 shadow-[0_24px_80px_rgba(30,50,90,0.08)] backdrop-blur-xl">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="text-xs font-medium text-[#7b8799]">{step.number}</span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e325a]/10 text-[#1e325a]">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-normal text-[#243149]">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#657286]">{step.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-            {/* CTAs */}
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/demo"
-                className="px-8 py-3.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:brightness-110 transition-all duration-300"
-              >
-                View Grant Demo
-              </Link>
-              <Link
-                href="/#documentation"
-                className="px-8 py-3.5 rounded-xl text-sm font-semibold text-zinc-300 border border-white/[0.1] hover:border-white/[0.2] hover:bg-white/[0.03] transition-all duration-300"
-              >
-                Read Documentation
-              </Link>
-              <Link
-                href="/pool"
-                className="px-8 py-3.5 rounded-xl text-sm font-semibold text-zinc-300 border border-white/[0.1] hover:border-white/[0.2] hover:bg-white/[0.03] transition-all duration-300"
-              >
-                Explore Liquidity Pool
-              </Link>
+      <section className="bg-[#f0f0f0] px-4 py-16 sm:px-6 lg:px-8" id="why-harbor">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div className="rounded-[2rem] bg-[#1e325a] p-8 text-white shadow-[0_28px_90px_rgba(30,50,90,0.18)]">
+            <div className="mb-16 flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
+              <Waves className="h-6 w-6" />
             </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55">Controlled prototype</p>
+            <h2 className="mt-4 text-3xl font-normal leading-tight tracking-normal md:text-5xl">
+              A transparent path from invoice review to settlement.
+            </h2>
+            <p className="mt-5 text-sm leading-relaxed text-white/70">
+              Harbor stays intentionally risk-aware: manual verification, mock sBTC, public testnet contracts,
+              and clear separation between off-chain review and on-chain lifecycle coordination.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {WHY_HARBOR.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.title} className="rounded-[1.75rem] border border-white/70 bg-white/55 p-6 shadow-[0_24px_80px_rgba(30,50,90,0.08)] backdrop-blur-xl">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#ff7a1a]/12 text-[#d75f00]">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-normal text-[#243149]">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#657286]">{item.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-            {/* Quick stats */}
-            <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
-              {[
-                { value: '7', label: 'Demo Receivables' },
-                { value: '15.0', label: 'sBTC in Pool' },
-                { value: '8.5%', label: 'Illustrative APR' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-2xl font-bold text-white">{stat.value}</p>
-                  <p className="mt-1 text-xs text-zinc-500">{stat.label}</p>
+      <section className="bg-[#f0f0f0] px-4 py-16 sm:px-6 lg:px-8" id="documentation">
+        <div className="mx-auto max-w-7xl rounded-[2.25rem] bg-white/55 p-6 shadow-[0_24px_90px_rgba(30,50,90,0.1)] ring-1 ring-white/70 backdrop-blur-xl md:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6e7c92]">Technical package</p>
+              <h2 className="mt-3 text-3xl font-normal tracking-normal text-[#243149] md:text-5xl">
+                Demo first. Docs right beside it.
+              </h2>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#657286]">
+                Use `/demo` for the clearest path through lifecycle simulation, contract mappings,
+                Wallet Mode, and Stacks testnet deployment status.
+              </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Link href="/demo" className="group flex w-fit items-center gap-3 rounded-full bg-[#1e325a] py-2 pr-6 pl-2 text-sm font-normal text-white transition-colors hover:bg-[#162642]">
+                  <span className="flex rounded-full bg-white/20 p-1.5">
+                    <ArrowUpRight className="h-5 w-5" />
+                  </span>
+                  Launch Demo
+                </Link>
+                <Link href="/pool" className="w-fit rounded-full border border-[#1e325a]/10 bg-white/60 px-6 py-3 text-sm font-normal text-[#1e325a] transition-colors hover:bg-white">
+                  Liquidity Pool
+                </Link>
+              </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {DOCS.map(([title, path]) => (
+                <div key={path} className="rounded-[1.25rem] border border-[#1e325a]/10 bg-[#f7f8fa]/70 p-5">
+                  <h3 className="text-sm font-medium text-[#243149]">{title}</h3>
+                  <p className="mt-3 break-all font-mono text-xs leading-relaxed text-[#6e7c92]">{path}</p>
                 </div>
               ))}
             </div>
@@ -164,232 +324,10 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="relative border-t border-white/[0.04] py-24" id="how-it-works">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white">How Harbor Works</h2>
-            <p className="mt-3 text-zinc-400 max-w-xl mx-auto">
-              A clear, five-step flow from invoice to settlement — designed for transparency at every stage.
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Connection line */}
-            <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent" />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-              {FLOW_STEPS.map((step) => (
-                <div key={step.number} className="relative group">
-                  <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 h-full transition-all duration-300 hover:border-orange-500/20 hover:bg-orange-500/[0.02]">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-2xl">{step.icon}</span>
-                      <span className="text-xs font-mono text-orange-500/60">{step.number}</span>
-                    </div>
-                    <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
-                    <p className="text-xs text-zinc-500 leading-relaxed">{step.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Harbor */}
-      <section className="relative border-t border-white/[0.04] py-24" id="why-harbor">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white">Why Harbor</h2>
-            <p className="mt-3 text-zinc-400 max-w-xl mx-auto">
-              Traditional invoice financing is opaque, expensive, and slow. Harbor brings transparency and Bitcoin-native settlement.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {WHY_HARBOR.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/10 text-orange-400">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                </div>
-                <p className="text-sm text-zinc-400 leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Stacks / sBTC */}
-      <section className="relative border-t border-white/[0.04] py-24" id="why-stacks">
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-500/[0.02] to-transparent" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white">Why Stacks & sBTC</h2>
-            <p className="mt-3 text-zinc-400 max-w-xl mx-auto">
-              Harbor is built on Stacks because receivables financing benefits from transparent state, auditable logic, and Bitcoin-native settlement.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {WHY_STACKS.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-orange-500/15"
-              >
-                <h3 className="text-sm font-semibold text-orange-400 mb-2">{item.title}</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* MVP Scope */}
-      <section className="relative border-t border-white/[0.04] py-24" id="mvp-scope">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white">MVP Scope</h2>
-            <p className="mt-3 text-zinc-400 max-w-xl mx-auto">
-              This is a grant-ready demo — not a production credit facility. Here&apos;s what&apos;s included and what&apos;s planned for later.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* In Scope */}
-            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.02] p-6">
-              <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-4">✅ In This MVP</h3>
-              <ul className="space-y-2.5">
-                {[
-                  'Receivable submission and lifecycle tracking',
-                  'Admin verification with structured checklist',
-                  'Mock sBTC liquidity pool and deposits',
-                  'Funding, repayment, and settlement flow',
-                  'Full lifecycle timeline per receivable',
-                  'Business, admin, and LP dashboards',
-                  'Stacks testnet contracts deployed',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-zinc-300">
-                    <span className="text-emerald-400 mt-0.5">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Out of Scope */}
-            <div className="rounded-xl border border-zinc-700/50 bg-white/[0.02] p-6">
-              <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">🔜 Planned for Later</h3>
-              <ul className="space-y-2.5">
-                {[
-                  'Real KYC/KYB verification',
-                  'Legal SPV entity structure',
-                  'Automated credit underwriting',
-                  'Bank account integration',
-                  'Secondary markets for receivables',
-                  'Multi-token support beyond sBTC',
-                  'Production-grade risk scoring',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-zinc-500">
-                    <span className="text-zinc-600 mt-0.5">○</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Reviewer CTA */}
-      <section className="relative border-t border-white/[0.04] py-20">
-        <div className="absolute inset-0 bg-gradient-to-t from-orange-500/[0.03] to-transparent" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-orange-400">Grant reviewer path</p>
-          <h2 className="text-2xl font-bold text-white mb-3">Start with the guided demo, then review the docs.</h2>
-          <p className="text-zinc-400 mb-8 max-w-md mx-auto">
-            The `/demo` route is the clearest path through the MVP lifecycle, contract mappings, and testnet deployment status.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/demo"
-              className="px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all"
-            >
-              View Grant Demo
-            </Link>
-            <Link
-              href="/#documentation"
-              className="px-6 py-3 rounded-xl text-sm font-medium text-zinc-300 border border-white/[0.1] hover:border-white/[0.2] transition-all"
-            >
-              Read Documentation
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Documentation */}
-      <section className="relative border-t border-white/[0.04] py-20" id="documentation">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-orange-400">Documentation</p>
-            <h2 className="mt-2 text-3xl font-bold text-white">Grant submission package</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">
-              The repository includes grant answers, reviewer notes, contract documentation, deployment notes,
-              and a screenshot checklist for the public demo package.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              ['Final Grant Answers', 'docs/FINAL_GRANT_ANSWERS.md'],
-              ['Reviewer Guide', 'docs/REVIEWER_GUIDE.md'],
-              ['Demo Guide', 'docs/DEMO_GUIDE.md'],
-              ['Vercel Deployment', 'docs/VERCEL_DEPLOYMENT.md'],
-            ].map(([title, path]) => (
-              <div key={path} className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
-                <h3 className="text-sm font-semibold text-white">{title}</h3>
-                <p className="mt-2 break-all font-mono text-xs text-zinc-500">{path}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/dashboard"
-              className="px-6 py-3 rounded-xl text-sm font-medium text-zinc-300 border border-white/[0.1] hover:border-white/[0.2] transition-all"
-            >
-              Business Dashboard
-            </Link>
-            <Link
-              href="/admin"
-              className="px-6 py-3 rounded-xl text-sm font-medium text-zinc-300 border border-white/[0.1] hover:border-white/[0.2] transition-all"
-            >
-              Admin Dashboard
-            </Link>
-            <Link
-              href="/pool"
-              className="px-6 py-3 rounded-xl text-sm font-medium text-zinc-300 border border-white/[0.1] hover:border-white/[0.2] transition-all"
-            >
-              Liquidity Pool
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/[0.04] py-8">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-zinc-600">
-              Harbor Finance — MVP Demo. Not a production financial product.
-            </p>
-            <p className="text-xs text-zinc-600">
-              Built on Stacks • Modeled with mock sBTC • Anchored to Bitcoin
-            </p>
-          </div>
+      <footer className="bg-[#f0f0f0] px-4 pb-8 pt-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-[#1e325a]/10 pt-6 text-xs text-[#6e7c92] sm:flex-row">
+          <p>Harbor Finance — Stacks testnet prototype. Not a production financial product.</p>
+          <p>Mock sBTC liquidity • Manual verification • Transparent lifecycle model</p>
         </div>
       </footer>
     </div>

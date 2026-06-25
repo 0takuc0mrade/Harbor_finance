@@ -15,7 +15,7 @@ export default function ReceivableDetailPage({ params }: { params: Promise<{ id:
 
   if (!receivable) {
     return (
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div className="harbor-workspace mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
         <div className="text-6xl mb-4">🔍</div>
         <h1 className="text-2xl font-bold text-white mb-2">Receivable Not Found</h1>
         <p className="text-zinc-500 mb-6">No receivable exists with ID &quot;{id}&quot;.</p>
@@ -31,7 +31,7 @@ export default function ReceivableDetailPage({ params }: { params: Promise<{ id:
   const advanceAmount = receivable.advanceAmount || (receivable.invoiceAmount * advanceRate / 100);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <div className="harbor-workspace mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-zinc-500 mb-6">
         <Link href="/dashboard" className="hover:text-zinc-300 transition-colors">Dashboard</Link>

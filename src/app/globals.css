@@ -3,23 +3,41 @@
 @theme inline {
   --color-background: #07080c;
   --color-foreground: #ededed;
-  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Helvetica Regular", "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "SFMono-Regular", "Roboto Mono", Consolas, "Liberation Mono", monospace;
+}
+
+@font-face {
+  font-family: "Helvetica Regular";
+  src: url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.woff2") format("woff2");
+  font-display: swap;
 }
 
 /* Base dark theme */
 :root {
   --background: #07080c;
   --foreground: #ededed;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #f0f0f0;
+  color: #243149;
   font-family: var(--font-sans, 'Inter', system-ui, -apple-system, sans-serif);
+  margin: 0;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] main {
+  background: #07111f;
+  color: #eaf2ff;
 }
 
 /* Scrollbar */
@@ -104,4 +122,172 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* Harbor light glass workspace theme for app screens */
+.harbor-workspace {
+  color: #243149;
+}
+
+.harbor-workspace [class*="bg-grid"] {
+  opacity: 0.65;
+}
+
+.harbor-workspace [class*="bg-white/["],
+.harbor-workspace [class*="bg-black/20"],
+.harbor-workspace [class*="bg-black/30"] {
+  background-color: rgba(255, 255, 255, 0.56) !important;
+  box-shadow: 0 24px 80px rgba(30, 50, 90, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.harbor-workspace [class*="border-white/["] {
+  border-color: rgba(30, 50, 90, 0.1) !important;
+}
+
+.harbor-workspace .text-white {
+  color: #243149 !important;
+}
+
+.harbor-workspace .text-zinc-200,
+.harbor-workspace .text-zinc-300 {
+  color: #3d4a5f !important;
+}
+
+.harbor-workspace .text-zinc-400 {
+  color: #59677b !important;
+}
+
+.harbor-workspace .text-zinc-500 {
+  color: #728095 !important;
+}
+
+.harbor-workspace .text-zinc-600 {
+  color: #8794a6 !important;
+}
+
+.harbor-workspace .text-orange-300,
+.harbor-workspace .text-orange-400 {
+  color: #d75f00 !important;
+}
+
+.harbor-workspace .text-cyan-200,
+.harbor-workspace .text-cyan-300,
+.harbor-workspace .text-cyan-400 {
+  color: #007c89 !important;
+}
+
+.harbor-workspace .text-emerald-300,
+.harbor-workspace .text-emerald-400 {
+  color: #10835d !important;
+}
+
+.harbor-workspace .text-amber-300,
+.harbor-workspace .text-amber-400 {
+  color: #b86900 !important;
+}
+
+.harbor-workspace .text-red-200,
+.harbor-workspace .text-red-400 {
+  color: #c23b4b !important;
+}
+
+.harbor-workspace button.text-white,
+.harbor-workspace a.text-white,
+.harbor-workspace [class*="bg-gradient-to-r"].text-white,
+.harbor-workspace [class*="bg-[#1e325a]"],
+.harbor-workspace [class*="bg-emerald-500"].text-white,
+.harbor-workspace [class*="bg-orange-500"].text-white,
+.harbor-workspace [class*="bg-cyan-500"].text-black {
+  color: #fff !important;
+}
+
+.harbor-workspace input,
+.harbor-workspace textarea {
+  color: #243149 !important;
+  background-color: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(30, 50, 90, 0.14) !important;
+}
+
+.harbor-workspace input::placeholder,
+.harbor-workspace textarea::placeholder {
+  color: #8794a6 !important;
+}
+
+:root[data-theme="dark"] .harbor-workspace {
+  color: #eaf2ff;
+}
+
+:root[data-theme="dark"] .harbor-workspace [class*="bg-white/["],
+:root[data-theme="dark"] .harbor-workspace [class*="bg-black/20"],
+:root[data-theme="dark"] .harbor-workspace [class*="bg-black/30"] {
+  background-color: rgba(9, 19, 34, 0.68) !important;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] .harbor-workspace [class*="border-white/["] {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+:root[data-theme="dark"] .harbor-workspace .text-white {
+  color: #eaf2ff !important;
+}
+
+:root[data-theme="dark"] .harbor-workspace .text-zinc-200,
+:root[data-theme="dark"] .harbor-workspace .text-zinc-300 {
+  color: #d5dfef !important;
+}
+
+:root[data-theme="dark"] .harbor-workspace .text-zinc-400 {
+  color: #a9b7ca !important;
+}
+
+:root[data-theme="dark"] .harbor-workspace .text-zinc-500 {
+  color: #8190a6 !important;
+}
+
+:root[data-theme="dark"] .harbor-workspace .text-zinc-600 {
+  color: #65748a !important;
+}
+
+:root[data-theme="dark"] .harbor-workspace input,
+:root[data-theme="dark"] .harbor-workspace textarea {
+  color: #eaf2ff !important;
+  background-color: rgba(8, 18, 32, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+:root[data-theme="dark"] .harbor-landing,
+:root[data-theme="dark"] .harbor-landing [class*="bg-[#f0f0f0]"] {
+  background-color: #07111f !important;
+}
+
+:root[data-theme="dark"] .harbor-landing [class*="text-[#35425a]"],
+:root[data-theme="dark"] .harbor-landing [class*="text-[#243149]"],
+:root[data-theme="dark"] .harbor-landing [class*="text-[#1f2937]"],
+:root[data-theme="dark"] .harbor-landing [class*="text-[rgba(30,50,90"] {
+  color: #eaf2ff !important;
+}
+
+:root[data-theme="dark"] .harbor-landing [class*="text-[#4d586b]"],
+:root[data-theme="dark"] .harbor-landing [class*="text-[#5f6b7d]"],
+:root[data-theme="dark"] .harbor-landing [class*="text-[#657286]"],
+:root[data-theme="dark"] .harbor-landing [class*="text-[#6e7c92]"],
+:root[data-theme="dark"] .harbor-landing [class*="text-[#7b8799]"] {
+  color: #a9b7ca !important;
+}
+
+:root[data-theme="dark"] .harbor-landing [class*="bg-white/"],
+:root[data-theme="dark"] .harbor-landing [class*="bg-[#f7f8fa]"] {
+  background-color: rgba(9, 19, 34, 0.7) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="dark"] .harbor-landing [class*="bg-[#1e325a]"] {
+  background-color: #10223d !important;
+}
+
+:root[data-theme="dark"] .harbor-landing [class*="border-[#1e325a]"] {
+  border-color: rgba(255, 255, 255, 0.12) !important;
 }

@@ -90,22 +90,22 @@ http://localhost:3000
 
 ```bash
 npm run dev
-npm run dev:webpack
+npm run dev:turbopack
 npm run lint
 npm run build
 npm run start
 ```
 
-If `npm run dev` reports an OS file watch limit from Turbopack/HMR, either raise the Linux watcher limit:
+`npm run dev` uses the Webpack dev server because Turbopack/HMR can hit Linux file watcher limits with the Stacks Connect dependency tree. To opt into Turbopack, use:
+
+```bash
+npm run dev:turbopack
+```
+
+If Turbopack reports an OS file watch limit, either return to `npm run dev` or raise the Linux watcher limit:
 
 ```bash
 sudo sysctl -w fs.inotify.max_user_watches=524288 fs.inotify.max_user_instances=2048
-```
-
-Or use the webpack dev fallback:
-
-```bash
-npm run dev:webpack
 ```
 
 ## Clarinet Commands

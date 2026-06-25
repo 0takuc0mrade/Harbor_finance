@@ -143,7 +143,7 @@ export default function WalletMode() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">Optional Testnet Wallet Mode</p>
-            <h2 className="mt-2 text-xl font-bold text-white">Signed interaction for technical reviewers</h2>
+            <h2 className="mt-2 text-xl font-bold text-white">Signed interaction for testnet users</h2>
             <p className="mt-3 text-sm leading-relaxed text-zinc-400">
               The main demo stays local and deterministic. Open this optional panel only when you want to connect a
               testnet wallet and submit a safe receivable transaction.

@@ -111,7 +111,7 @@ const STEPS: DemoStep[] = [
     action: 'Close receivable lifecycle',
     parameters: ['id: u101'],
     note:
-      'Settlement marks the lifecycle complete and gives reviewers a clean audit trail from submission to repayment.',
+      'Settlement marks the lifecycle complete and preserves a clean audit trail from submission to repayment.',
   },
 ];
 
@@ -164,7 +164,7 @@ export default function DemoPage() {
   };
 
   return (
-    <div className="relative">
+    <div className="harbor-workspace relative">
       <section className="relative overflow-hidden border-b border-white/[0.04]">
         <div className="absolute inset-0 bg-grid" />
         <div className="absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-orange-500/[0.05] blur-3xl" />
@@ -176,7 +176,7 @@ export default function DemoPage() {
               </span>
             </div>
             <h1 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-5xl">
-              Contract-aware Harbor MVP walkthrough
+              Contract-aware Harbor walkthrough
             </h1>
             <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
               Follow one receivable from submission through approval, pool funding, repayment, and settlement while seeing
@@ -190,8 +190,8 @@ export default function DemoPage() {
         <div className="rounded-xl border border-orange-500/20 bg-orange-500/[0.04] p-5">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-orange-400">Grant-ready MVP</p>
-              <h2 className="mt-1 text-lg font-bold text-white">MVP demonstrates:</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-orange-400">Lifecycle model</p>
+              <h2 className="mt-1 text-lg font-bold text-white">Harbor demonstrates:</h2>
             </div>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-5">
               {[
@@ -453,13 +453,13 @@ export default function DemoPage() {
 
       <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
-          <p className="text-xs font-semibold uppercase tracking-wider text-orange-400">Grant Reviewer Walkthrough</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-orange-400">Product Walkthrough</p>
           <h2 className="mt-2 text-xl font-bold text-white">The 90-second version</h2>
           <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[
               ['What Harbor does', 'Harbor lets businesses turn verified unpaid invoices into working capital funded by an sBTC-style liquidity pool.'],
               ['Why Stacks/sBTC matters', 'Stacks gives programmable settlement anchored to Bitcoin, while sBTC is the intended Bitcoin-native funding asset.'],
-              ['What the MVP proves', 'The app and contracts demonstrate submission, approval, funding, repayment, settlement, and auditable pool accounting.'],
+              ['What Harbor shows', 'The app and contracts demonstrate submission, approval, funding, repayment, settlement, and auditable pool accounting.'],
               ['What is mocked', 'sBTC is mock-sbtc, repayment confirmation is admin-entered, and invoice documents are represented by hashes.'],
               ['What is out of scope', 'No real KYC, SPV, bank rails, legal enforcement, automated underwriting, or production credit claims are included.'],
               ['Production needs', 'A production version needs real sBTC integration, KYB/KYC, legal receivable assignment, fiat/payment ops, risk controls, and audits.'],
@@ -476,7 +476,7 @@ export default function DemoPage() {
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mb-4">
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Contract Map</p>
-          <h2 className="mt-1 text-xl font-bold text-white">MVP contract metadata</h2>
+          <h2 className="mt-1 text-xl font-bold text-white">Contract metadata</h2>
         </div>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {CONTRACTS.map((contract) => (
