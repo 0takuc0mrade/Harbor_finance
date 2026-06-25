@@ -18,6 +18,7 @@ import {
 
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260428_193507_4286c423-2fd9-4efd-92bd-91a939453fc1.mp4';
+const REPO_DOCS_BASE_URL = 'https://github.com/0takuc0mrade/Harbor_finance/blob/main';
 
 const FLOW_STEPS = [
   {
@@ -314,10 +315,19 @@ export default function LandingPage() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {DOCS.map(([title, path]) => (
-                <div key={path} className="rounded-[1.25rem] border border-[#1e325a]/10 bg-[#f7f8fa]/70 p-5">
-                  <h3 className="text-sm font-medium text-[#243149]">{title}</h3>
+                <a
+                  key={path}
+                  href={`${REPO_DOCS_BASE_URL}/${path}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group rounded-[1.25rem] border border-[#1e325a]/10 bg-[#f7f8fa]/70 p-5 transition-all hover:-translate-y-0.5 hover:bg-white/80 hover:shadow-[0_24px_70px_rgba(30,50,90,0.12)]"
+                >
+                  <h3 className="flex items-center justify-between gap-3 text-sm font-medium text-[#243149]">
+                    {title}
+                    <ArrowUpRight className="h-4 w-4 flex-none text-[#6e7c92] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </h3>
                   <p className="mt-3 break-all font-mono text-xs leading-relaxed text-[#6e7c92]">{path}</p>
-                </div>
+                </a>
               ))}
             </div>
           </div>
